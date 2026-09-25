@@ -11,13 +11,17 @@ st.set_page_config(
     layout="wide",
 )
 
-# Estilização visual personalizada com as cores da empresa
+# Estilização visual corrigida para forçar textos brancos e visibilidade correta
 st.markdown(
     """
     <style>
     .stApp {
         background-color: #0a0a0a;
         color: #ffffff;
+    }
+    /* Força todas as legendas, labels e textos comuns a ficarem brancos */
+    label, .stTextInput label, .stNumberInput label, .stSelectbox label, p, span {
+        color: #ffffff !important;
     }
     .main-header {
         font-size: 24px;
@@ -187,7 +191,7 @@ if not st.session_state.autenticado:
       unsafe_allow_html=True,
   )
   st.markdown(
-      "<h3 style='text-align: center; color: #cccccc;'>Controle de Estoque e"
+      "<h3 style='text-align: center; color: #ffffff;'>Controle de Estoque e"
       " EPIs</h3>",
       unsafe_allow_html=True,
   )
@@ -195,12 +199,6 @@ if not st.session_state.autenticado:
   col1, col2, col3 = st.columns([1, 1.2, 1])
 
   with col2:
-    st.markdown(
-        "<div style='background-color: #141414; padding: 30px; border-radius:"
-        " 10px; border: 2px solid #009b3a;'>",
-        unsafe_allow_html=True,
-    )
-
     if st.session_state.get("tela_cadastro_tst"):
       st.markdown(
           "<h4 style='color: #ffdf00;'>Cadastro de Novo TST</h4>",
@@ -299,8 +297,6 @@ if not st.session_state.autenticado:
       if st.button("Cadastrar Novo TST", use_container_width=True):
         st.session_state.tela_cadastro_tst = True
         st.rerun()
-
-    st.markdown("</div>", unsafe_allow_html=True)
 
 # ==================== SISTEMA PRINCIPAL ====================
 else:
