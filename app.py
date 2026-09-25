@@ -11,13 +11,25 @@ st.set_page_config(
     layout="wide",
 )
 
-# Estilização CSS para o visual correto e legível
+# Estilização CSS refinada para forçar o fundo do container de login e cores
 st.markdown(
     """
     <style>
     .stApp {
-        background-color: #0a0a0a;
+        background-color: #0e1117;
         color: #ffffff;
+    }
+    /* Força o fundo escuro nos blocos de formulário e containers */
+    div[data-testid="stVerticalBlock"] > div[style*="background-color"] {
+        background-color: #1a1c23 !important;
+    }
+    /* Estilo personalizado para o container de login */
+    .login-box {
+        background-color: #1a1c23 !important;
+        padding: 35px !important;
+        border-radius: 12px !important;
+        border: 2px solid #009b3a !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     }
     label, .stTextInput label, .stNumberInput label, .stSelectbox label, p, span {
         color: #ffffff !important;
@@ -198,11 +210,8 @@ if not st.session_state.autenticado:
   col1, col2, col3 = st.columns([1, 1.2, 1])
 
   with col2:
-    st.markdown(
-        "<div style='background-color: #141414; padding: 30px; border-radius:"
-        " 10px; border: 2px solid #009b3a;'>",
-        unsafe_allow_html=True,
-    )
+    # Usando a classe CSS dedicada 'login-box'
+    st.markdown("<div class='login-box'>", unsafe_allow_html=True)
 
     if st.session_state.get("tela_cadastro_tst"):
       st.markdown(
