@@ -4,14 +4,14 @@ import re
 from datetime import datetime
 import streamlit as st
 
-# Configuração da página para ocupar a largura total e ter o tema escuro
+# Configuração da página
 st.set_page_config(
     page_title="Brava Construções - Gestão de EPIs e Colaboradores",
     page_icon="👷",
     layout="wide",
 )
 
-# Estilização visual corrigida para forçar textos brancos e visibilidade correta
+# Estilização CSS para o visual correto e legível
 st.markdown(
     """
     <style>
@@ -19,7 +19,6 @@ st.markdown(
         background-color: #0a0a0a;
         color: #ffffff;
     }
-    /* Força todas as legendas, labels e textos comuns a ficarem brancos */
     label, .stTextInput label, .stNumberInput label, .stSelectbox label, p, span {
         color: #ffffff !important;
     }
@@ -199,6 +198,12 @@ if not st.session_state.autenticado:
   col1, col2, col3 = st.columns([1, 1.2, 1])
 
   with col2:
+    st.markdown(
+        "<div style='background-color: #141414; padding: 30px; border-radius:"
+        " 10px; border: 2px solid #009b3a;'>",
+        unsafe_allow_html=True,
+    )
+
     if st.session_state.get("tela_cadastro_tst"):
       st.markdown(
           "<h4 style='color: #ffdf00;'>Cadastro de Novo TST</h4>",
@@ -297,6 +302,8 @@ if not st.session_state.autenticado:
       if st.button("Cadastrar Novo TST", use_container_width=True):
         st.session_state.tela_cadastro_tst = True
         st.rerun()
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # ==================== SISTEMA PRINCIPAL ====================
 else:
